@@ -6,24 +6,24 @@ import {
 const { OS, select } = Platform;
 const platformStyles = select({
   android: {
-    'SubmitBtn--android': {
+    'TextButton--android': {
       backgroundColor: '#000',
     },
-    'SubmitBtn-text--android': {
+    'TextButton-text--android': {
       color: '#fff',
     },
   },
   ios: {
-    'SubmitBtn--ios': {
+    'TextButton--ios': {
       backgroundColor: '#eee',
     },
-    'SubmitBtn-text--ios': {
+    'TextButton-text--ios': {
       color: '#282828',
     },
   },
 });
 const styles = StyleSheet.create({
-  SubmitBtn: {
+  TextButton: {
     alignItems: 'center',
     borderRadius: 5,
     padding: 5,

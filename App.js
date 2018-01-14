@@ -8,7 +8,7 @@ import {
   Provider,
 } from 'mobx-react/native';
 import deckStore from './state/store';
-import NewDeckScreen from './views/screens/NewDeckScreen';
+import DeckListScreen from './views/screens/DeckListScreen';
 
 @observer
 class App extends Component {
@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <Provider decks={deckStore}>
         <View style={styles.container}>
-          <NewDeckScreen />
+          <DeckListScreen />
         </View>
       </Provider>
     );

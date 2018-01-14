@@ -5,22 +5,24 @@ import {
 import uuidv4 from 'uuid/v4';
 
 class Decks {
-  @observable decks = {};
+  @observable decks = new Map();
 
   @action('Add new card to deck')
   addCardToDeck = (deckId, card) => {
-    let { cards } = this.decks[deckId];
+    let { name, cards } = this.decks.get(deckId);
 
     cards = { ...cards, card };
-    this.decks[deckId].cards = cards;
+    this.decks.set(deckId, { name, cards });
   }
 
   @action('Add new deck')
   createDeck = (name) => {
     const id = uuidv4();
-    this.decks[id] = {
-      name
+    const newDeck = {
+      name,
+      cards: {},
     };
+    this.decks.set(id, newDeck);
   }
 }
 

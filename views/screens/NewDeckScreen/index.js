@@ -8,7 +8,7 @@ import {
   inject,
   observer,
 } from 'mobx-react/native';
-import SubmitButton from '../../components/SubmitButton';
+import TextButton from '../../components/TextButton';
 import styles from './styles';
 
 @inject('decks')
@@ -32,7 +32,10 @@ class NewDeckScreen extends Component {
           value={this.state.deckName}
           onChangeText={this.handleTextChange}
         />
-        <SubmitButton onPress={this.handleSubmit} />
+        <TextButton
+          onPress={this.handleSubmit}
+          label='Submit'
+        />
       </KeyboardAvoidingView>
     );
   }

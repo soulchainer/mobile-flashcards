@@ -6,22 +6,22 @@ import {
 } from 'react-native';
 import defaultStyles from './styles';
 
-const SubmitBtn = ({
+const TextButton = ({
   onPress,
-  label = 'Submit',
+  label,
   style = defaultStyles,
 }) => (
   <TouchableOpacity
     style={[
-      style.SubmitBtn,
-      style[`SubmitBtn--${Platform.OS}`],
+      style.TextButton,
+      style[`TextButton--${Platform.OS}`],
     ]}
     onPress={onPress}
   >
     <Text
       style={[
-        style['SubmitBtn-text'],
-        style[`SubmitBtn-text--${Platform.OS}`],
+        style['TextButton-text'],
+        style[`TextButton-text--${Platform.OS}`],
       ]}
     >
       {label}
@@ -29,4 +29,4 @@ const SubmitBtn = ({
   </TouchableOpacity>
 );
 
-export default SubmitBtn;
+export default TextButton;
