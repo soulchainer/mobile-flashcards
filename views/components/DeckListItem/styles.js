@@ -1,7 +1,8 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  DeckListItem: {},
+  DeckListItem: {
+  },
   DeckListItemName: {
     color: '#282828',
     fontSize: 18,

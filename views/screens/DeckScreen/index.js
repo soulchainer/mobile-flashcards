@@ -10,10 +10,10 @@ import {
 import TextButton from '../../components/TextButton';
 import styles from './styles';
 
-@inject('decks')
+@inject('deckStore')
 class DeckScreen extends Component {
   render() {
-    const { decks: { cards, name } } = this.props;
+    const { decks: { cards, name } } = this.props.deckStore;
 
     handleAddCard = () => {}
     handleStartQuiz = () => {}

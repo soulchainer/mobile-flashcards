@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import {
   Text,
+  View,
 } from 'react-native';
 import {
   inject,
 } from 'mobx-react/native';
 import styles from './styles';
 
-@inject('decks')
+@inject('deckStore')
 class DeckListItem extends Component {
   render() {
     const { item: { cards, name } } = this.props;
@@ -16,7 +17,7 @@ class DeckListItem extends Component {
       <View style={styles.DeckListItem}>
         <Text style={styles.DeckListItemName}>{name}</Text>
         <Text style={styles.DeckListItemCardNumber}>
-          {`${cards.length} cards`}
+          {`${(cards && cards.length) || 0} cards`}
         </Text>
       </View>
     );

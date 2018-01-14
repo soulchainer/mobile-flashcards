@@ -11,19 +11,33 @@ import {
 import DeckListItem from '../../components/DeckListItem';
 import styles from './styles';
 
-@inject('decks')
+@inject('deckStore')
+@observer
 class DeckListScreen extends Component {
-  renderItem = item => <DeckListItem item={item} />;
+  static navigationOptions = {
+    tabBarLabel: 'DECKS',
+  };
+
+  renderItem = item => <DeckListItem item={item} key={item.key} />;
+  renderList = decks => {
+    if (decks) return (
+      <FlatList
+        data={decks}
+        keyExtractor={item => item.key}
+        renderItem={this.renderItem}
+      />
+    );
+    return <View>Empty List</View>;
+  };
 
   render() {
-    const { decks } = this.props;
+    const { deckStore } = this.props;
+    const decks = deckStore.decks && deckStore.decks.values()
 
     return (
       <View style={styles.DeckListScreen}>
-        <FlatList
-          data={Object.values(decks)}
-          renderItem={this.renderItem}
-        />
+        {this.renderList(decks)}
+        <Text>{JSON.stringify(decks)}</Text>
       </View>
     );
   }

@@ -1,7 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  DeckListScreen: {
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
   },
 });
 

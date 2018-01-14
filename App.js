@@ -3,36 +3,25 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import {
-  observer,
-  Provider,
-} from 'mobx-react/native';
+import { Provider } from 'mobx-react/native';
 import deckStore from './state/store';
-import DeckListScreen from './views/screens/DeckListScreen';
+import Root from './views/components/Root';
 
-@observer
 class App extends Component {
   componentDidMount() {
-    // this would be a great place for recovering persisted state
+    /**
+     * This would be a great place for recovering persisted state.
+     * And then pass to `Provider` the persisted data of the store.
+     */
   }
+
   render() {
     return (
-      <Provider decks={deckStore}>
-        <View style={styles.container}>
-          <DeckListScreen />
-        </View>
+      <Provider deckStore={deckStore}>
+        <Root />
       </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default App;
