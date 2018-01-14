@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 import {
@@ -9,6 +8,7 @@ import {
   Provider,
 } from 'mobx-react/native';
 import deckStore from './state/store';
+import NewDeckScreen from './views/screens/NewDeckScreen';
 
 @observer
 class App extends Component {
@@ -19,10 +19,7 @@ class App extends Component {
     return (
       <Provider decks={deckStore}>
         <View style={styles.container}>
-          <Text>Open up App.js to start working on your app!</Text>
-          <Text>Changes you make will automatically reload.</Text>
-          <Text>Shake your phone to open the developer menu.</Text>
-          <Text>{JSON.stringify(deckStore)}</Text>
+          <NewDeckScreen />
         </View>
       </Provider>
     );

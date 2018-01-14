@@ -16,10 +16,10 @@ class Decks {
   }
 
   @action('Add new deck')
-  createDeck = (title) => {
+  createDeck = (name) => {
     const id = uuidv4();
     this.decks[id] = {
-      title
+      name
     };
   }
 }
