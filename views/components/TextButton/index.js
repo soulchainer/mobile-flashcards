@@ -8,15 +8,17 @@ import defaultStyles from './styles';
 
 const TextButton = ({
   onPress,
+  disabled,
   label,
   style = defaultStyles,
 }) => (
   <TouchableOpacity
+    onPress={onPress}
+    disabled={disabled}
     style={[
       style.TextButton,
       style[`TextButton--${Platform.OS}`],
     ]}
-    onPress={onPress}
   >
     <Text
       style={[
