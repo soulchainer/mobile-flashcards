@@ -11,7 +11,7 @@ import styles from './styles';
 @inject('deckStore')
 class DeckListItem extends Component {
   render() {
-    const { item: { cards, name } } = this.props;
+    const { deck: { cards, name } } = this.props;
 
     return (
       <View style={styles.DeckListItem}>

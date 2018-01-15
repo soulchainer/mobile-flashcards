@@ -2,14 +2,15 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   DeckListItem: {
+    alignItems: 'center',
   },
   DeckListItemName: {
     color: '#282828',
-    fontSize: 18,
+    fontSize: 40,
   },
   DeckListItemCardNumber: {
-    color: '#ddd',
-    fontSize: 10,
+    color: '#8d8c8c',
+    fontSize: 20,
   },
 });
 

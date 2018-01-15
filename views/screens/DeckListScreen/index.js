@@ -19,7 +19,7 @@ class DeckListScreen extends Component {
     title: 'DECKS',
   };
 
-  renderItem = item => <DeckListItem item={item} key={item.key} />;
+  renderItem = ({ item }) => <DeckListItem deck={item} key={item.key} />;
   renderList = decks => {
     if (decks) return (
       <FlatList
@@ -38,8 +38,6 @@ class DeckListScreen extends Component {
     return (
       <View style={styles.DeckListScreen}>
         {this.renderList(decks)}
-        <Text>{JSON.stringify(decks)}</Text>
-        <Text>{JSON.stringify(this.props.navigation)}</Text>
       </View>
     );
   }
