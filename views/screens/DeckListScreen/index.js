@@ -16,6 +16,7 @@ import styles from './styles';
 class DeckListScreen extends Component {
   static navigationOptions = {
     tabBarLabel: 'DECKS',
+    title: 'DECKS',
   };
 
   renderItem = item => <DeckListItem item={item} key={item.key} />;
@@ -38,6 +39,7 @@ class DeckListScreen extends Component {
       <View style={styles.DeckListScreen}>
         {this.renderList(decks)}
         <Text>{JSON.stringify(decks)}</Text>
+        <Text>{JSON.stringify(this.props.navigation)}</Text>
       </View>
     );
   }

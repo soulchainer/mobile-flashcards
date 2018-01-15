@@ -16,6 +16,7 @@ import styles from './styles';
 class NewDeckScreen extends Component {
   static navigationOptions = {
     tabBarLabel: 'NEW DECK',
+    title: 'NEW DECK',
   };
 
   state = {
@@ -23,7 +24,13 @@ class NewDeckScreen extends Component {
   }
 
   handleTextChange = (deckName) => { this.setState(() => ({ deckName })) };
-  handleSubmit = () => { this.props.deckStore.createDeck(this.state.deckName) };
+  handleSubmit = () => {
+    const name = this.state.deckName;
+    const { deckStore, navigation } = this.props;
+
+    deckStore.createDeck(name);
+    navigation.navigate('DeckScreen', { newDeck: { name, cards: [] } });
+  };
 
   render() {
     return (

@@ -3,8 +3,12 @@ import {
   Text,
   View,
 } from 'react-native';
-import { TabNavigator } from 'react-navigation';
+import {
+  StackNavigator,
+  TabNavigator,
+} from 'react-navigation';
 import DeckListScreen from '../../screens/DeckListScreen';
+import DeckScreen from '../../screens/DeckScreen';
 import NewDeckScreen from '../../screens/NewDeckScreen';
 import styles from './styles';
 
@@ -24,11 +28,32 @@ const Tabs = TabNavigator({
   },
 });
 
+const Screens = StackNavigator({
+  Home: {
+    screen: Tabs,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  DeckScreen: {
+    screen: DeckScreen,
+  },
+},
+{
+  initialRouteName: 'Home',
+  navigationOptions: {
+    headerTintColor: '#fff',
+    headerStyle: {
+      backgroundColor: '#000',
+    },
+  },
+});
+
 class Navigation extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Tabs />
+        <Screens />
       </View>
     );
   }
