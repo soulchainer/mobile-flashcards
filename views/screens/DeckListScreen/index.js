@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+  Dimensions,
   FlatList,
   Text,
   View,
@@ -11,6 +12,9 @@ import {
 import DeckListItem from '../../components/DeckListItem';
 import styles from './styles';
 
+const { height } = Dimensions.get('window');
+const ITEM_HEIGHT = height / 3;
+
 @inject('deckStore')
 @observer
 class DeckListScreen extends Component {
@@ -19,17 +23,28 @@ class DeckListScreen extends Component {
     title: 'DECKS',
   };
 
-  renderItem = ({ item }) => <DeckListItem deck={item} key={item.key} />;
-  renderList = decks => {
-    if (decks) return (
-      <FlatList
-        data={decks}
-        keyExtractor={item => item.key}
-        renderItem={this.renderItem}
-      />
-    );
-    return <View>Empty List</View>;
-  };
+  getItemLayout = (data, index) => (
+    {length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index}
+  );
+
+  renderItem = ({ item }) => (
+    <DeckListItem
+      deck={item}
+      height={ITEM_HEIGHT}
+      key={item.key}
+    />
+  );
+
+  renderPlaceholder = () => (
+    <View style={styles.DeckListScreenPlaceholder}>
+      <Text
+        style={styles.DeckListScreenPlaceholderText}>
+        There are no decks
+      </Text>
+    </View>
+  );
+
+  renderSeparator = () => <View style={styles.DeckListScreenSeparator} />;
 
   render() {
     const { deckStore } = this.props;
@@ -37,7 +52,14 @@ class DeckListScreen extends Component {
 
     return (
       <View style={styles.DeckListScreen}>
-        {this.renderList(decks)}
+        <FlatList
+          data={decks}
+          getItemLayout={this.getItemLayout}
+          ItemSeparatorComponent={this.renderSeparator}
+          ListEmptyComponent={this.renderPlaceholder}
+          keyExtractor={item => item.key}
+          renderItem={this.renderItem}
+        />
       </View>
     );
   }

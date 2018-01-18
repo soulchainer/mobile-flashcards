@@ -20,10 +20,10 @@ const Tabs = TabNavigator({
     screen: NewDeckScreen,
   },
 }, {
-  tabBarPosition: 'bottom',
+  tabBarPosition: 'top',
   animationEnabled: true,
   tabBarOptions: {
-    activeTintColor: '#e91e63',
+    activeTintColor: '#ffeb40',
     showLabel: true,
   },
 });

@@ -11,10 +11,13 @@ import styles from './styles';
 @inject('deckStore')
 class DeckListItem extends Component {
   render() {
-    const { deck: { cards, name } } = this.props;
+    const {
+      deck: { cards, name },
+      height,
+    } = this.props;
 
     return (
-      <View style={styles.DeckListItem}>
+      <View style={[styles.DeckListItem, { height }]}>
         <Text style={styles.DeckListItemName}>{name}</Text>
         <Text style={styles.DeckListItemCardNumber}>
           {`${(cards && cards.length) || 0} cards`}
