@@ -9,10 +9,16 @@ import {
   inject,
   observer,
 } from 'mobx-react/native';
+import { Constants } from 'expo';
 import DeckListItem from '../../components/DeckListItem';
+import {
+  ELEVATION,
+  TABBAR_HEIGHT,
+} from '../../../constants';
 import styles from './styles';
 
-const { height } = Dimensions.get('window');
+let { height } = Dimensions.get('window');
+height = height - Constants.statusBarHeight - TABBAR_HEIGHT - ELEVATION;
 const ITEM_HEIGHT = height / 3;
 
 @inject('deckStore')

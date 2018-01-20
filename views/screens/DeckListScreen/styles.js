@@ -2,17 +2,23 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   DeckListScreen: {
+    alignItems: 'center',
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   DeckListScreenPlaceholder: {
+    alignItems: 'center',
+    flex: 1,
   },
   DeckListScreenPlaceholderText: {
     fontSize: 40,
   },
   DeckListScreenSeparator: {
-    height: 1,
-    width: "86%",
     backgroundColor: "#ced0ce",
-    marginLeft: "7%"
+    height: 1,
+    marginLeft: "7%",
+    width: "86%",
   }
 });
 

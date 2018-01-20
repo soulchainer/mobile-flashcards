@@ -7,6 +7,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export const StatusBarBackgroundColor = '#ae3c81';
-
 export default styles;

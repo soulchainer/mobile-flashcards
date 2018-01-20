@@ -10,6 +10,10 @@ import {
 import DeckListScreen from '../../screens/DeckListScreen';
 import DeckScreen from '../../screens/DeckScreen';
 import NewDeckScreen from '../../screens/NewDeckScreen';
+import {
+  ELEVATION,
+  TABBAR_HEIGHT
+} from '../../../constants';
 import styles from './styles';
 
 const Tabs = TabNavigator({
@@ -23,8 +27,17 @@ const Tabs = TabNavigator({
   tabBarPosition: 'top',
   animationEnabled: true,
   tabBarOptions: {
-    activeTintColor: '#ffeb40',
+    activeTintColor: '#fff',
+    indicatorStyle: {
+      backgroundColor: '#e78ec4',
+      height: 4,
+    },
     showLabel: true,
+    style: {
+      backgroundColor: '#ae3c81',
+      elevation: ELEVATION,
+      height: TABBAR_HEIGHT,
+    },
   },
 });
 
@@ -44,7 +57,7 @@ const Screens = StackNavigator({
   navigationOptions: {
     headerTintColor: '#fff',
     headerStyle: {
-      backgroundColor: '#000',
+      backgroundColor: '#ae3c81',
     },
   },
 });
