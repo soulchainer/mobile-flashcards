@@ -3,22 +3,33 @@ import {
   Text,
   View,
 } from 'react-native';
+import {
+  inject,
+  observer,
+} from 'mobx-react/native';
 import TextButton from '../../components/TextButton';
 import styles from './styles';
 
+@inject('deckStore')
+@observer
 class DeckScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
-    title: navigation.state.params.newDeck.name,
+    title: navigation.state.params.deck.name,
   });
+
+  /* These two function will redirect to the proper screens, when done */
+  handleAddCard = () => {
+    const { navigate, state } = this.props.navigation;
+
+    navigate('NewCardScreen', { deckId: state.params.deck.key });
+  }
+
+  handleStartQuiz = () => {}
 
   render() {
     const { params } = this.props.navigation.state;
-    const newDeck = params && params.newDeck;
-    const { cards, name } = newDeck ? newDeck : this.props;
-
-    /* These two function will redirect to the proper screens, when done */
-    handleAddCard = () => {}
-    handleStartQuiz = () => {}
+    const { key, name } = params.deck;
+    const { cards } = this.props.deckStore.decks.get(key);
 
     return (
       <View style={styles.DeckScreen}>

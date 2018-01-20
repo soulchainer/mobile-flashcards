@@ -9,6 +9,7 @@ import {
 } from 'react-navigation';
 import DeckListScreen from '../../screens/DeckListScreen';
 import DeckScreen from '../../screens/DeckScreen';
+import NewCardScreen from '../../screens/NewCardScreen';
 import NewDeckScreen from '../../screens/NewDeckScreen';
 import {
   ELEVATION,
@@ -24,8 +25,9 @@ const Tabs = TabNavigator({
     screen: NewDeckScreen,
   },
 }, {
-  tabBarPosition: 'top',
   animationEnabled: true,
+  initialRouteName: 'DeckListScreen',
+  tabBarPosition: 'top',
   tabBarOptions: {
     activeTintColor: '#fff',
     indicatorStyle: {
@@ -51,6 +53,9 @@ const Screens = StackNavigator({
   DeckScreen: {
     screen: DeckScreen,
   },
+  NewCardScreen: {
+    screen: NewCardScreen,
+  }
 },
 {
   initialRouteName: 'Home',

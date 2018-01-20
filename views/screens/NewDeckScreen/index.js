@@ -8,6 +8,7 @@ import {
   inject,
   observer,
 } from 'mobx-react/native';
+import uuidv4 from 'uuid/v4';
 import TextButton from '../../components/TextButton';
 import styles from './styles';
 
@@ -27,9 +28,15 @@ class NewDeckScreen extends Component {
   handleSubmit = () => {
     const name = this.state.deckName;
     const { deckStore, navigation } = this.props;
+    const key = uuidv4();
+    const deck = {
+      cards: [],
+      key,
+      name,
+    };
 
-    deckStore.createDeck(name);
-    navigation.navigate('DeckScreen', { newDeck: { name, cards: [] } });
+    deckStore.addDeck(key, deck);
+    navigation.navigate('DeckScreen', { deck });
   };
 
   render() {
@@ -40,8 +47,9 @@ class NewDeckScreen extends Component {
       >
         <Text>What is the title of your new deck?</Text>
         <TextInput
-          value={this.state.deckName}
           onChangeText={this.handleTextChange}
+          placeholder='Deck Title'
+          value={this.state.deckName}
         />
         <TextButton
           onPress={this.handleSubmit}
