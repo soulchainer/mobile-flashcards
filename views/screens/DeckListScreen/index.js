@@ -11,6 +11,7 @@ import {
 } from 'mobx-react/native';
 import { Constants } from 'expo';
 import DeckListItem from '../../components/DeckListItem';
+import TextButton from '../../components/TextButton';
 import {
   ELEVATION,
   TABBAR_HEIGHT,
@@ -47,6 +48,10 @@ class DeckListScreen extends Component {
         style={styles.DeckListScreenPlaceholderText}>
         There are no decks
       </Text>
+      <TextButton
+        onPress={() => this.props.navigation.navigate('NewDeckScreen')}
+        label='Add a deck'
+      />
     </View>
   );
 
