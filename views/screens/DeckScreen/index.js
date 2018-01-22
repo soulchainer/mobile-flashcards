@@ -24,7 +24,11 @@ class DeckScreen extends Component {
     navigate('NewCardScreen', { deckId: state.params.deck.key });
   }
 
-  handleStartQuiz = () => {}
+  handleStartQuiz = () => {
+    const { navigate, state } = this.props.navigation;
+
+    navigate('QuizScreen', { deck: state.params.deck });
+  }
 
   render() {
     const { params } = this.props.navigation.state;
@@ -44,7 +48,7 @@ class DeckScreen extends Component {
           />
           <TextButton
             onPress={this.handleStartQuiz}
-            label='Star Quiz'
+            label='Start Quiz'
           />
         </View>
       </View>
@@ -53,8 +57,3 @@ class DeckScreen extends Component {
 }
 
 export default DeckScreen;
-
-/* - muestra el título del `Deck`
-- muestra el número de tarjetas, `Card`, en el `Deck`
-- muestra una opción para empezar un `Quiz` (examen) en el `Deck` actual
-- muestra una opción para añadir una nueva pregunta, `Card`, al `Deck` */

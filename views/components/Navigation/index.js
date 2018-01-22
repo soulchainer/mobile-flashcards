@@ -11,6 +11,7 @@ import DeckListScreen from '../../screens/DeckListScreen';
 import DeckScreen from '../../screens/DeckScreen';
 import NewCardScreen from '../../screens/NewCardScreen';
 import NewDeckScreen from '../../screens/NewDeckScreen';
+import QuizScreen from '../../screens/QuizScreen';
 import {
   ELEVATION,
   TABBAR_HEIGHT
@@ -55,6 +56,9 @@ const Screens = StackNavigator({
   },
   NewCardScreen: {
     screen: NewCardScreen,
+  },
+  QuizScreen: {
+    screen: QuizScreen,
   }
 },
 {
