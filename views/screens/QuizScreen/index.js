@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {
+  Animated,
+  Dimensions,
   Text,
   View,
 } from 'react-native';
@@ -10,7 +12,19 @@ import {
 import TextButton from '../../components/TextButton';
 import styles from './styles';
 
+const {
+  height,
+  width,
+} = Dimensions.get('window');
+
+const {
+  timing,
+  Value: AnimatedValue,
+  View: AnimatedView,
+} = Animated;
+
 const initialState = {
+  animatedValue: new AnimatedValue(0),
   answers: {
     correct: 0,
     incorrect: 0,
@@ -19,7 +33,6 @@ const initialState = {
   toggled: false,
 };
 
-// AÑADIR LOS ESTILOS QUE FALTAN Y POCO MÁS :D. DIVIDIR EN COMPONENTES
 @inject('deckStore')
 @observer
 class QuizScreen extends Component {
@@ -36,6 +49,13 @@ class QuizScreen extends Component {
     console.log(this.cards);
     console.log(props.deckStore.decks.get(key).cards);
     this.totalCards = this.cards.length;
+  }
+
+  componentDidMount() {
+    timing(this.state.animatedValue, {
+      toValue: 1,
+      duration: 5000,
+    }).start();
   }
 
   toggleCard = () => { this.setState(({ toggled }) => { toggled: !toggled })};
@@ -68,38 +88,48 @@ class QuizScreen extends Component {
   render() {
     const { currentCard, toggled } = this.state;
     const { answer, question } = this.cards[currentCard - 1];
+    const interpolatedQuestion = this.state.animatedValue.interpolate({
+      inputRange: [0, 1],
+      outputRange: [0, -height],
+    });
+    const interpolatedAnswer = this.state.animatedValue.interpolate({
+      inputRange: [0, 1],
+      outputRange: [height, 0],
+    });
 
     return (
       <View style={styles.QuizScreen}>
         <View style={styles.QuizScreenCard}>
 
 
-          <View
+          <AnimatedView
             style={[
               styles.QuizScreenCardFace,
               styles.QuizScreenCardQuestion,
-              toggled && styles.QuizScreenCardQuestionToggled
+              //toggled && styles.QuizScreenCardQuestionToggled
+              { transform: [{ translateY: interpolatedQuestion }] }
             ]}
           >
             <View style={styles.QuizScreenTextGroup}>
-              <Text>{question}</Text>
+              <Text style={styles.QuizScreenText}>{question}</Text>
               <TextButton
                 onPress={this.toggleCard}
                 label='Answer'
               />
             </View>
-          </View>
+          </AnimatedView>
 
 
-          <View
+          <AnimatedView
             style={[
               styles.QuizScreenCardFace,
               styles.QuizScreenCardAnswer,
-              toggled && styles.QuizScreenCardAnswerToggled
+              //toggled && styles.QuizScreenCardAnswerToggled
+              { transform: [{ translateY: interpolatedAnswer }] }
             ]}
           >
             <View style={styles.QuizScreenTextGroup}>
-              <Text>{answer}</Text>
+              <Text style={styles.QuizScreenText}>{answer}</Text>
               <TextButton
                 onPress={this.toggleCard}
                 label='Question'
@@ -115,7 +145,7 @@ class QuizScreen extends Component {
                 label='Incorrect'
               />
             </View>
-          </View>
+          </AnimatedView>
 
 
         </View>

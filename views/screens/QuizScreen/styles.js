@@ -1,11 +1,16 @@
-import { StyleSheet } from 'react-native';
+import {
+  Dimensions,
+  StyleSheet,
+} from 'react-native';
+
+const {
+  height,
+  width,
+} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   QuizScreen: {
-    alignItems: 'center',
-    backgroundColor: 'wheat',
     flex: 1,
-    justifyContent: 'center',
   },
   QuizScreenButtonGroup: {
     alignItems: 'center',
@@ -13,20 +18,29 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   QuizScreenCard: {
+    alignItems: 'center',
+    backgroundColor: 'green',
+    flex: 1,
+    justifyContent: 'center',
+    width,
   },
   QuizScreenCardAnswer: {
     backgroundColor: 'red',
     position: 'absolute',
-    top: 0,
+    transform: [{ translateY: height }]
   },
   QuizScreenCardFace: {
     alignItems: 'center',
     justifyContent: 'center',
-    width: 200,
-    height: 200
+    flex: 1,
   },
   QuizScreenCardQuestion: {
     backgroundColor: 'blue',
+    position: 'absolute',
+    transform: [{ translateY: 0 }]
+  },
+  QuizScreenText: {
+    fontSize: 30,
   },
   QuizScreenTextGroup: {
     alignItems: 'center',
