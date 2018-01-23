@@ -24,7 +24,6 @@ const {
 } = Animated;
 
 const initialState = {
-  animatedValue: new AnimatedValue(0),
   answers: {
     correct: 0,
     incorrect: 0,
@@ -44,6 +43,7 @@ class QuizScreen extends Component {
     super(props);
 
     this.state = initialState;
+    this.animatedValue = new AnimatedValue(0);
     const { key } = props.navigation.state.params.deck;
     this.cards = props.deckStore.decks.get(key).cards;
     console.log(this.cards);
@@ -51,14 +51,17 @@ class QuizScreen extends Component {
     this.totalCards = this.cards.length;
   }
 
-  componentDidMount() {
-    timing(this.state.animatedValue, {
+  animateCard = () => {
+    this.animatedValue.setValue(0);
+    timing(this.animatedValue, {
       toValue: 1,
       duration: 5000,
     }).start();
   }
 
-  toggleCard = () => { this.setState(({ toggled }) => { toggled: !toggled })};
+  toggleCard = () => {
+    this.setState(({ toggled }) => ({ toggled: !toggled }), this.animateCard);
+  };
 
   /* These two function will redirect to the proper screens, when done */
   exitQuiz = () => {
@@ -88,13 +91,13 @@ class QuizScreen extends Component {
   render() {
     const { currentCard, toggled } = this.state;
     const { answer, question } = this.cards[currentCard - 1];
-    const interpolatedQuestion = this.state.animatedValue.interpolate({
+    const interpolatedQuestion = this.animatedValue.interpolate({
       inputRange: [0, 1],
-      outputRange: [0, -height],
+      outputRange: toggled ? [0, -height]: [-height, 0],
     });
-    const interpolatedAnswer = this.state.animatedValue.interpolate({
+    const interpolatedAnswer = this.animatedValue.interpolate({
       inputRange: [0, 1],
-      outputRange: [height, 0],
+      outputRange: toggled ? [height, 0] : [0, height],
     });
 
     return (
