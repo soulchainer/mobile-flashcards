@@ -49,17 +49,19 @@ class QuizScreen extends Component {
     console.log(this.cards);
     console.log(props.deckStore.decks.get(key).cards);
     this.totalCards = this.cards.length;
+    this.userHasAlreadyInteracted = false;
   }
 
   animateCard = () => {
     this.animatedValue.setValue(0);
     timing(this.animatedValue, {
       toValue: 1,
-      duration: 5000,
+      duration: 400,
     }).start();
   }
 
   toggleCard = () => {
+    if (!this.userHasAlreadyInteracted) this.userHasAlreadyInteracted = true;
     this.setState(({ toggled }) => ({ toggled: !toggled }), this.animateCard);
   };
 
@@ -74,7 +76,10 @@ class QuizScreen extends Component {
 
   handleIncorrectAnswer = () => { this.nextCard('incorrect') };
 
-  restartQuiz = () => { this.setState(initialState) };
+  restartQuiz = () => {
+    this.userHasAlreadyInteracted = false;
+    this.setState(initialState)
+  };
 
   nextCard = (answerType) => {
     // cargar aquí directamente la nueva pregunta o el mensaje de finalización
@@ -91,13 +96,15 @@ class QuizScreen extends Component {
   render() {
     const { currentCard, toggled } = this.state;
     const { answer, question } = this.cards[currentCard - 1];
-    const interpolatedQuestion = this.animatedValue.interpolate({
-      inputRange: [0, 1],
-      outputRange: toggled ? [0, -height]: [-height, 0],
-    });
     const interpolatedAnswer = this.animatedValue.interpolate({
       inputRange: [0, 1],
-      outputRange: toggled ? [height, 0] : [0, height],
+      // outputRange: toggled ? [0, -height]: [-height, 0],
+      outputRange: toggled ? [height, 0]: [0, height],
+    });
+    const interpolatedQuestion = this.animatedValue.interpolate({
+      inputRange: [0, 1],
+      // outputRange: toggled ? [height, 0] : [0, height],
+      outputRange: toggled ? [0, -height] : [-height, 0],
     });
 
     return (
@@ -110,7 +117,7 @@ class QuizScreen extends Component {
               styles.QuizScreenCardFace,
               styles.QuizScreenCardQuestion,
               //toggled && styles.QuizScreenCardQuestionToggled
-              { transform: [{ translateY: interpolatedQuestion }] }
+              this.userHasAlreadyInteracted && { transform: [{ translateY: interpolatedQuestion }] }
             ]}
           >
             <View style={styles.QuizScreenTextGroup}>
@@ -128,7 +135,7 @@ class QuizScreen extends Component {
               styles.QuizScreenCardFace,
               styles.QuizScreenCardAnswer,
               //toggled && styles.QuizScreenCardAnswerToggled
-              { transform: [{ translateY: interpolatedAnswer }] }
+              this.userHasAlreadyInteracted && { transform: [{ translateY: interpolatedAnswer }] }
             ]}
           >
             <View style={styles.QuizScreenTextGroup}>

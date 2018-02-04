@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   QuizScreenCardAnswer: {
     backgroundColor: 'red',
     position: 'absolute',
-    transform: [{ translateY: height }]
+    transform: [{ translateY: height }],
   },
   QuizScreenCardFace: {
     alignItems: 'center',
