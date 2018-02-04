@@ -36,6 +36,9 @@ class DeckListScreen extends Component {
 
   renderItem = ({ item }) => (
     <DeckListItem
+      onItemPress={() => {
+        this.props.navigation.navigate('DeckScreen', { deck: item });
+      }}
       deck={item}
       height={ITEM_HEIGHT}
       key={item.key}

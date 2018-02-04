@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   Text,
+  TouchableHighlight,
   View,
 } from 'react-native';
 import {
@@ -14,15 +15,18 @@ class DeckListItem extends Component {
     const {
       deck: { cards, name },
       height,
+      onItemPress
     } = this.props;
 
     return (
-      <View style={[styles.DeckListItem, { height }]}>
-        <Text style={styles.DeckListItemName}>{name}</Text>
-        <Text style={styles.DeckListItemCardNumber}>
-          {`${(cards && cards.length) || 0} cards`}
-        </Text>
-      </View>
+      <TouchableHighlight onPress={onItemPress}>
+        <View style={[styles.DeckListItem, { height }]}>
+          <Text style={styles.DeckListItemName}>{name}</Text>
+          <Text style={styles.DeckListItemCardNumber}>
+            {`${(cards && cards.length) || 0} cards`}
+          </Text>
+        </View>
+      </TouchableHighlight>
     );
   }
 }
