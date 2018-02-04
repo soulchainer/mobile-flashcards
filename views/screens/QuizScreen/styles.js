@@ -10,6 +10,7 @@ const {
 
 const styles = StyleSheet.create({
   QuizScreen: {
+    backgroundColor: '#ddd',
     flex: 1,
   },
   QuizScreenButtonGroup: {
@@ -19,13 +20,11 @@ const styles = StyleSheet.create({
   },
   QuizScreenCard: {
     alignItems: 'center',
-    backgroundColor: 'green',
     flex: 1,
     justifyContent: 'center',
     width,
   },
   QuizScreenCardAnswer: {
-    backgroundColor: 'red',
     position: 'absolute',
     transform: [{ translateY: height }],
   },
@@ -33,11 +32,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
+    paddingHorizontal: 10,
+    paddingVertical: 15,
+    width
   },
   QuizScreenCardQuestion: {
-    backgroundColor: 'blue',
     position: 'absolute',
     transform: [{ translateY: 0 }]
+  },
+  QuizScreenProgress: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    padding: 5
   },
   QuizScreenText: {
     fontSize: 30,
