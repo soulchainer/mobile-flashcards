@@ -9,6 +9,10 @@ import {
   inject,
   observer,
 } from 'mobx-react/native';
+import {
+  clearLocalNotification,
+  setLocalNotification,
+} from '../../../utils/notifications'
 import TextButton from '../../components/TextButton';
 import styles from './styles';
 
@@ -49,6 +53,12 @@ class QuizScreen extends Component {
     this.cards = props.deckStore.decks.get(key).cards;
     this.totalCards = this.cards.length;
     this.userHasAlreadyInteracted = false;
+  }
+
+  componentWillUpdate(nextProps, { endOfQuiz }) {
+    if (endOfQuiz) {
+      clearLocalNotification().then(setLocalNotification)
+    }
   }
 
   animateCard = () => {
