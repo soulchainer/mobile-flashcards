@@ -51,10 +51,10 @@ export function setLocalNotification () {
                * set the date to start emitting the notification:
                * tomorrow at 20:00
                */
-              let tomorrow = new Date()
-              tomorrow.setDate(tomorrow.getDate() + 1)
-              tomorrow.setHours(20)
-              tomorrow.setMinutes(0)
+              let t = new Date()
+                  t.setDate(t.getDate() + 1)
+                  t.setHours(12)
+                  t.setMinutes(0)
               /* schedule new repeating notifications */
               Notifications.scheduleLocalNotificationAsync(
                 /* create new notification object */
@@ -62,7 +62,7 @@ export function setLocalNotification () {
                 /* set some notification options */
                 {
                   /* when start to lauch notifications */
-                  time: tomorrow,
+                  time: t,
                   /* frecuency of the notifications */
                   repeat: 'day',
                 }
