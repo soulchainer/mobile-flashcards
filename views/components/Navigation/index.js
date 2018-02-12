@@ -7,6 +7,7 @@ import {
   StackNavigator,
   TabNavigator,
 } from 'react-navigation';
+import CreditsScreen from '../../screens/CreditsScreen';
 import DeckListScreen from '../../screens/DeckListScreen';
 import DeckScreen from '../../screens/DeckScreen';
 import NewCardScreen from '../../screens/NewCardScreen';
@@ -24,6 +25,9 @@ const Tabs = TabNavigator({
   },
   NewDeckScreen: {
     screen: NewDeckScreen,
+  },
+  Credits: {
+    screen: CreditsScreen,
   },
 }, {
   animationEnabled: true,

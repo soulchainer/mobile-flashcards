@@ -6,6 +6,10 @@
     "description": "",
     "slug": "soulcards",
     "version": "1.0",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover"
+    },
     "android": {
       "package": "org.soulcards.exp"
     }
