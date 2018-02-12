@@ -62,7 +62,7 @@ class DeckListScreen extends Component {
 
   render() {
     const { deckStore } = this.props;
-    const decks = deckStore.decks && deckStore.decks.values()
+    const decks = deckStore.decks && Array.from(deckStore.decks.values()).filter(item => !!item)
 
     return (
       <View style={styles.DeckListScreen}>
