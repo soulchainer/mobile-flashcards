@@ -9,7 +9,10 @@ import {
   inject,
   observer,
 } from 'mobx-react/native';
-import { Constants } from 'expo';
+import {
+  AppLoading,
+  Constants
+} from 'expo';
 import DeckListItem from '../../components/DeckListItem';
 import TextButton from '../../components/TextButton';
 import {
@@ -29,6 +32,10 @@ class DeckListScreen extends Component {
     tabBarLabel: 'DECKS',
     title: 'DECKS',
   };
+
+  async componentDidMount() {
+    this.props.deckStore.getInitialDecks();
+  }
 
   getItemLayout = (data, index) => (
     {length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index}
@@ -62,7 +69,13 @@ class DeckListScreen extends Component {
 
   render() {
     const { deckStore } = this.props;
-    const decks = deckStore.decks && Array.from(deckStore.decks.values()).filter(item => !!item)
+    const decks = deckStore.decks && deckStore.decks.values()
+
+    if (deckStore.loading) {
+      return (
+        <AppLoading />
+      )
+    }
 
     return (
       <View style={styles.DeckListScreen}>

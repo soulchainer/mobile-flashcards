@@ -8,7 +8,8 @@ import {
 } from '../utils/persistence';
 
 class DeckStore {
-  @observable decks = new Map(Object.entries(loadState()));
+  @observable decks = new Map();
+  @observable loading = true;
 
   @action('Add new card to deck')
   addCardToDeck = (deckId, card) => {
@@ -26,6 +27,12 @@ class DeckStore {
   addDeck = (key, deck) => {
     this.decks.set(key, deck);
     persistState({ [key]: deck });
+  }
+
+  @action('Get initial decks')
+  getInitialDecks = async () => {
+    this.decks = new Map(Object.entries(await(loadState())));
+    this.loading = false;
   }
 }
 
