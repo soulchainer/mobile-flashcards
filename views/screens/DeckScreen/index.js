@@ -38,17 +38,21 @@ class DeckScreen extends Component {
     return (
       <View style={styles.DeckScreen}>
         <View style={styles.DeckScreenTextGroup}>
-          <Text>{name}</Text>
-          <Text>{`${cards.length} cards`}</Text>
+          <Text style={styles.DeckScreenTextName}>{name}</Text>
+          <Text style={styles.DeckScreenTextNumber}>
+            {`${cards.length} cards`}
+          </Text>
         </View>
         <View style={styles.DeckScreenButtonGroup}>
           <TextButton
             onPress={this.handleAddCard}
             label='Add Card'
+            style={styles}
           />
           <TextButton
             onPress={this.handleStartQuiz}
             label='Start Quiz'
+            style={styles}
           />
         </View>
       </View>

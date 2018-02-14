@@ -9,12 +9,23 @@ import {
   inject,
   observer,
 } from 'mobx-react/native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import {
   clearLocalNotification,
   setLocalNotification,
 } from '../../../utils/notifications'
 import TextButton from '../../components/TextButton';
 import styles from './styles';
+
+const loseColor = '#de1a3d';
+const winColor = '#f39b1a';
+
+const loseIcon = (
+  <MaterialCommunityIcons name='close-outline' color={loseColor} size={100} />
+);
+const winIcon = (
+  <MaterialCommunityIcons name='trophy-award' color={winColor} size={100} />
+);
 
 const {
   height,
@@ -107,7 +118,11 @@ class QuizScreen extends Component {
   };
 
   render() {
-    const { currentCard, toggled } = this.state;
+    const {
+      answers: { correct, incorrect },
+      currentCard,
+      toggled
+    } = this.state;
     const { answer, question } = this.cards[currentCard - 1];
     const interpolatedAnswer = this.animatedValue.interpolate({
       inputRange: [0, 1],
@@ -117,6 +132,7 @@ class QuizScreen extends Component {
       inputRange: [0, 1],
       outputRange: toggled ? [0, -height] : [-height, 0],
     });
+    const winner = correct >= incorrect;
 
     return (
       <View style={styles.QuizScreen}>
@@ -134,25 +150,36 @@ class QuizScreen extends Component {
             
             {
               !this.state.endOfQuiz ?
-                <View style={styles.QuizScreenTextGroup}>
+                <View style={styles.QuizScreenMainContent}>
                   <Text style={styles.QuizScreenText}>{question}</Text>
                   <TextButton
                     onPress={this.toggleCard}
                     label='Answer'
+                    style={styles}
                   />
                 </View>
               :
               // Quiz End UI
-              <View style={styles.QuizScreenTextGroup}>
-                <Text style={styles.QuizScreenText}>{this.state.answers.correct}</Text>
+              <View style={styles.QuizScreenMainContent}>
+                {winner ? winIcon : loseIcon}
+                <Text
+                  style={[
+                    styles.QuizScreenFinalScoreText,
+                    { color: winner ? winColor : loseColor }
+                  ]}
+                >
+                  {`${Math.round((correct / this.totalCards) * 100)} %`}
+                </Text>
                 <View style={styles.QuizScreenButtonGroup}>
                   <TextButton
                     onPress={this.restartQuiz}
                     label='Restart'
+                    style={styles}
                   />
                   <TextButton
                     onPress={this.exitQuiz}
                     label='Exit'
+                    style={styles}
                   />
                 </View>
               </View>
@@ -165,21 +192,24 @@ class QuizScreen extends Component {
               this.userHasAlreadyInteracted && { transform: [{ translateY: interpolatedAnswer }] }
             ]}
           >
-            <View style={styles.QuizScreenTextGroup}>
+            <View style={styles.QuizScreenMainContent}>
               <Text style={styles.QuizScreenText}>{answer}</Text>
               <TextButton
                 onPress={this.toggleCard}
                 label='Question'
+                style={styles}
               />
             </View>
             <View style={styles.QuizScreenButtonGroup}>
               <TextButton
                 onPress={this.handleCorrectAnswer}
                 label='Correct'
+                style={styles}
               />
               <TextButton
                 onPress={this.handleIncorrectAnswer}
                 label='Incorrect'
+                style={styles}
               />
             </View>
           </AnimatedView>

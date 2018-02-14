@@ -45,19 +45,21 @@ class NewDeckScreen extends Component {
         behavior='padding'
         style={styles.NewDeckScreen}
       >
-        <Text>What is the title of your new deck?</Text>
+        <Text style={styles.NewDeckScreenQuestion}>
+          What is the title of your new deck?
+        </Text>
         <TextInput
           onChangeText={this.handleTextChange}
           placeholder='Deck Title'
+          style={styles.NewDeckScreenInput}
           value={this.state.deckName}
         />
         <TextButton
           onPress={this.handleSubmit}
           disabled={!this.state.deckName}
           label='Submit'
+          style={styles}
         />
-        <Text>{JSON.stringify(this.props.deckStore.decks.values())}</Text>
-        <Text>{this.state.deckName}</Text>
       </KeyboardAvoidingView>
     );
   }

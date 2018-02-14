@@ -69,6 +69,7 @@ class NewCardScreen extends Component {
         <TextInput
           onChangeText={this.handleQuestionChange}
           placeholder='Question'
+          style={styles.NewCardScreenInput}
           value={question}
         />
         <TextInput
@@ -76,15 +77,15 @@ class NewCardScreen extends Component {
           multiline
           numberOfLines={4}
           placeholder='Answer'
+          style={styles.NewCardScreenInput}
           value={answer}
         />
         <TextButton
           onPress={this.handleSubmit}
           disabled={submitDisabled}
           label='Submit'
+          style={styles}
         />
-        <Text>{JSON.stringify(this.props.deckStore.decks.values())}</Text>
-        <Text>{JSON.stringify(this.state)}</Text>
       </KeyboardAvoidingView>
     );
   }

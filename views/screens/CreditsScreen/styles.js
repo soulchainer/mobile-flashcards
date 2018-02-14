@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     marginLeft: '10%',
-    maxWidth: '80%',
+    width: '80%',
   },
   CreditsScreenLink: {
     color: '#ae3c81',

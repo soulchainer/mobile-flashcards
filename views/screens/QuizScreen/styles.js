@@ -40,6 +40,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
     transform: [{ translateY: 0 }]
   },
+  QuizScreenFinalScoreText: {
+    fontSize: 40,
+    fontWeight: 'bold',
+  },
+  QuizScreenMainContent: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+  },
   QuizScreenProgress: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -48,10 +57,15 @@ const styles = StyleSheet.create({
   QuizScreenText: {
     fontSize: 30,
   },
-  QuizScreenTextGroup: {
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
+  TextButton: {
+    backgroundColor: '#ae3c81',
+    marginTop: 20,
+    minWidth: '40%',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+  },
+  'TextButton-text--android': {
+    fontSize: 20,
   },
 });
 

@@ -10,20 +10,24 @@ const TextButton = ({
   onPress,
   disabled,
   label,
-  style = defaultStyles,
+  style
 }) => (
   <TouchableOpacity
     onPress={onPress}
     disabled={disabled}
     style={[
-      style.TextButton,
-      style[`TextButton--${Platform.OS}`],
+      defaultStyles.TextButton,
+      defaultStyles[`TextButton--${Platform.OS}`],
+      style && style.TextButton,
+      style && style[`TextButton--${Platform.OS}`],
     ]}
   >
     <Text
       style={[
-        style['TextButton-text'],
-        style[`TextButton-text--${Platform.OS}`],
+        defaultStyles['TextButton-text'],
+        defaultStyles[`TextButton-text--${Platform.OS}`],
+        style && style['TextButton-text'],
+        style && style[`TextButton-text--${Platform.OS}`],
       ]}
     >
       {label}
