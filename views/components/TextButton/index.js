@@ -14,6 +14,7 @@ const TextButton = ({
 }) => (
   <TouchableOpacity
     onPress={onPress}
+    activeOpacity={0.6}
     disabled={disabled}
     style={[
       defaultStyles.TextButton,

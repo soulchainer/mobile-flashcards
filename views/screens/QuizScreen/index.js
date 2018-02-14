@@ -24,7 +24,7 @@ const loseIcon = (
   <MaterialCommunityIcons name='close-outline' color={loseColor} size={100} />
 );
 const winIcon = (
-  <MaterialCommunityIcons name='trophy-award' color={winColor} size={100} />
+  <MaterialCommunityIcons name='star' color={winColor} size={100} />
 );
 
 const {
@@ -78,7 +78,7 @@ class QuizScreen extends Component {
       toValue: 1,
       duration: 400,
     }).start();
-  }
+  };
 
   toggleCard = () => {
     if (!this.userHasAlreadyInteracted) this.userHasAlreadyInteracted = true;
