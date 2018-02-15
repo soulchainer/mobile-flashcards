@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 15,
   },
-  'TextButton-text--android': {
+  'TextButton-text': {
     fontSize: 20,
   },
 });

@@ -1,37 +1,18 @@
-import {
-  Platform,
-  StyleSheet,
-} from 'react-native';
+import { StyleSheet } from 'react-native';
 
-const { OS, select } = Platform;
-const platformStyles = select({
-  android: {
-    'TextButton--android': {
-      backgroundColor: '#000',
-    },
-    'TextButton-text--android': {
-      color: '#fff',
-    },
-  },
-  ios: {
-    'TextButton--ios': {
-      backgroundColor: '#eee',
-    },
-    'TextButton-text--ios': {
-      color: '#282828',
-    },
-  },
-});
 const styles = StyleSheet.create({
   TextButton: {
     alignItems: 'center',
+    backgroundColor: 'rgba(28, 28, 28, 1)',
     borderRadius: 5,
     padding: 5,
   },
   'TextButton--disabled': {
-    opacity: 0.6,
+    backgroundColor: 'rgba(28, 28, 28, 0.6)',
   },
-  ...platformStyles,
+  'TextButton-text': {
+    color: '#fff',
+  }
 });
 
 export default styles;

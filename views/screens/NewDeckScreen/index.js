@@ -57,7 +57,7 @@ class NewDeckScreen extends Component {
         <TextButton
           onPress={this.handleSubmit}
           disabled={!this.state.deckName}
-          label='Submit'
+          label='Create Deck'
           style={styles}
         />
       </KeyboardAvoidingView>

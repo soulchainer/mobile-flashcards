@@ -92,8 +92,3 @@ class NewCardScreen extends Component {
 }
 
 export default NewCardScreen;
-
-/* `NewCardScreen`
-- Una opción para introducir la nueva pregunta
-- Una opción para introducir su respuesta
-- Una opción para enviar la nueva pregunta */
