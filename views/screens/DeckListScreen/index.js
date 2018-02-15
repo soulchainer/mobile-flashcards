@@ -61,6 +61,7 @@ class DeckListScreen extends Component {
       <TextButton
         onPress={() => this.props.navigation.navigate('NewDeckScreen')}
         label='Add a deck'
+        style={styles}
       />
     </View>
   );

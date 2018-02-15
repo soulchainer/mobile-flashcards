@@ -28,6 +28,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 5,
   },
+  'TextButton--disabled': {
+    opacity: 0.6,
+  },
   ...platformStyles,
 });
 

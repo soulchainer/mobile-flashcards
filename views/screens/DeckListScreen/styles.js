@@ -19,7 +19,17 @@ const styles = StyleSheet.create({
     height: 1,
     marginLeft: "7%",
     width: "86%",
-  }
+  },
+  TextButton: {
+    backgroundColor: '#ae3c81',
+    marginTop: 40,
+    minWidth: '40%',
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+  },
+  'TextButton-text--android': {
+    fontSize: 20,
+  },
 });
 
 export default styles;

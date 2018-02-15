@@ -51,6 +51,7 @@ class DeckScreen extends Component {
           />
           <TextButton
             onPress={this.handleStartQuiz}
+            disabled={!cards.length}
             label='Start Quiz'
             style={styles}
           />
