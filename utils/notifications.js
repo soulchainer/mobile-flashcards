@@ -15,19 +15,17 @@ export const clearLocalNotification = () => {
 /*
 * Create an object representing a notification
 */
-function createNotification () {
-  return {
-    title: 'Your daily study session',
-    body: "👋 Remember to study a bit everyday. It's good for your brain!",
-    /* some notification options */
-    android: {
-      sound: true,
-      priority: 'high',
-      sticky: false,
-      vibrate: true,
-    }
+const createNotification = () => ({
+  title: 'Your daily study session',
+  body: "👋 Remember to study a bit everyday. It's good for your brain!",
+  /* some notification options */
+  android: {
+    sound: true,
+    priority: 'high',
+    sticky: false,
+    vibrate: true,
   }
-}
+});
 
 /*
 * Set a new local notification
