@@ -9,6 +9,10 @@ import {
 } from 'mobx-react/native';
 import styles from './styles';
 
+/**
+ * Used to render each of the deck objects.
+ * @returns {Object} Object that represents the state persisted in the device.
+ */
 @inject('deckStore')
 class DeckListItem extends Component {
   render() {

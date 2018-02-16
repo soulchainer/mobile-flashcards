@@ -25,6 +25,9 @@ let { height } = Dimensions.get('window');
 height = height - Constants.statusBarHeight - TABBAR_HEIGHT - ELEVATION;
 const ITEM_HEIGHT = height / 3;
 
+/*
+ * Renders the list of decks of the app. This is the main view of the app.
+ */
 @inject('deckStore')
 @observer
 class DeckListScreen extends Component {

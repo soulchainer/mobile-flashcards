@@ -17,6 +17,9 @@ import {
 import TextButton from '../../components/TextButton';
 import styles from './styles';
 
+/**
+ * Data about the icons to show of quiz end.
+ */
 const loseColor = '#de1a3d';
 const winColor = '#f39b1a';
 
@@ -38,6 +41,9 @@ const {
   View: AnimatedView,
 } = Animated;
 
+/**
+ * Initial state. To be reused everytime we restart the quiz.
+ */
 const initialState = {
   answers: {
     correct: 0,
@@ -48,6 +54,10 @@ const initialState = {
   toggled: false,
 };
 
+
+/**
+ * Renders the Quiz view
+ */
 @inject('deckStore')
 @observer
 class QuizScreen extends Component {
@@ -66,12 +76,19 @@ class QuizScreen extends Component {
     this.userHasAlreadyInteracted = false;
   }
 
+  /**
+   * Clear existing notifications and schedule new ones when the user ends
+   * a Quiz.
+   */
   componentWillUpdate(nextProps, { endOfQuiz }) {
     if (endOfQuiz) {
       clearLocalNotification().then(setLocalNotification)
     }
   }
 
+  /**
+   * Trigger the card animation
+   */
   animateCard = () => {
     this.animatedValue.setValue(0);
     timing(this.animatedValue, {
@@ -80,26 +97,44 @@ class QuizScreen extends Component {
     }).start();
   };
 
+  /**
+   * Toggle the card and show one or another face of them
+   */
   toggleCard = () => {
     if (!this.userHasAlreadyInteracted) this.userHasAlreadyInteracted = true;
     this.setState(({ toggled }) => ({ toggled: !toggled }), this.animateCard);
   };
 
+  /**
+   * Exit the quiz
+   */
   exitQuiz = () => {
     const { navigate, state } = this.props.navigation;
 
     navigate('DeckScreen', { deck: state.params.deck });
   };
 
+  /**
+   * React when the «Correct» button is pressed
+   */
   handleCorrectAnswer = () => { this.nextCard('correct') };
 
+  /**
+   * React when the «Incorrect» button is pressed
+   */
   handleIncorrectAnswer = () => { this.nextCard('incorrect') };
 
+  /**
+   * Restart the quiz
+   */
   restartQuiz = () => {
     this.userHasAlreadyInteracted = false;
     this.setState(initialState)
   };
 
+  /**
+   * Show next card, if any, or end the quiz
+   */
   nextCard = (answerType) => {
     this.setState(({ answers }) => ({
       answers: { ...answers, [answerType]: answers[answerType] + 1 },

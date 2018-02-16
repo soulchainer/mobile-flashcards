@@ -5,6 +5,9 @@ import {
 } from 'react-native';
 import defaultStyles from './styles';
 
+/**
+ * Reusable component to draw all buttons with texts in the application. 
+ */
 const TextButton = ({
   onPress,
   disabled,

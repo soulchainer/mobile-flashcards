@@ -10,6 +10,9 @@ import {
 import TextButton from '../../components/TextButton';
 import styles from './styles';
 
+/*
+ * Renders an individual deck view.
+ */
 @inject('deckStore')
 @observer
 class DeckScreen extends Component {
@@ -17,13 +20,18 @@ class DeckScreen extends Component {
     title: navigation.state.params.deck.name,
   });
 
-  /* These two function will redirect to the proper screens, when done */
+  /**
+   * Add a new card to the actual deck.
+   */
   handleAddCard = () => {
     const { navigate, state } = this.props.navigation;
 
     navigate('NewCardScreen', { deckId: state.params.deck.key });
   }
 
+  /**
+   * Go to the `QuizScreen` view when the user clicks on 'Start Quiz'
+   */
   handleStartQuiz = () => {
     const { navigate, state } = this.props.navigation;
 

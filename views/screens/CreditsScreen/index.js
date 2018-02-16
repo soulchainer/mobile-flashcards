@@ -6,6 +6,11 @@ import {
 import { WebBrowser } from 'expo';
 import styles from './styles';
 
+/*
+ * Component to show credits of the app.
+ * Did this specifically because I'm using a icon from www.flaticon.com and
+ * they demand to give credit to the authors this way.
+ */
 class CreditsScreen extends Component {
   static navigationOptions = {
     tabBarLabel: 'CREDITS',

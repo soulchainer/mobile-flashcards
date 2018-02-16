@@ -18,6 +18,9 @@ const initialState = {
   submitDisabled: true,
 };
 
+/**
+ * Renders the New Card (Question) view
+ */
 @inject('deckStore')
 @observer
 class NewCardScreen extends Component {
@@ -27,14 +30,24 @@ class NewCardScreen extends Component {
 
   state = initialState;
 
+  /**
+   * Handle changes in the Answer value input by the user
+   */
   handleAnswerChange = (answer) => {
     this.setState({ answer }, this.updateSubmitButtonState);
-  }
+  };
 
+  /**
+   * Handle changes in the Question value input by the user
+   */
   handleQuestionChange = (question) => { 
     this.setState({ question }, this.updateSubmitButtonState);
-  }
+  };
 
+  /**
+   * Handle the submit of the data given by the user.
+   * Basically, sends the data and adds a card to the proper deck.
+   */
   handleSubmit = () => {
     const { answer, question } = this.state;
     const key = uuidv4();
@@ -46,13 +59,17 @@ class NewCardScreen extends Component {
     goBack();
   };
 
+  /**
+   * Enable/Disable the «Submit» button, depending on if all the required
+   * inputs to create a new card has info or not.
+   */
   updateSubmitButtonState = () => {
     const { answer, question } = this.state;
     const submitDisabled = (answer === '') || (question === '');
     if (submitDisabled !== this.state.submitDisabled) {
       this.setState({ submitDisabled });
     }
-  }
+  };
 
   render() {
     const {

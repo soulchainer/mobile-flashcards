@@ -12,6 +12,9 @@ import uuidv4 from 'uuid/v4';
 import TextButton from '../../components/TextButton';
 import styles from './styles';
 
+/**
+ * Render the view to create a new deck
+ */
 @inject('deckStore')
 @observer
 class NewDeckScreen extends Component {
@@ -24,7 +27,14 @@ class NewDeckScreen extends Component {
     deckName: '',
   }
 
+  /**
+   * Handle changes in the value of the input to set the name of the new deck
+   */
   handleTextChange = (deckName) => { this.setState(() => ({ deckName })) };
+
+  /**
+   * Handle the sent of data, to create a new deck with the given name
+   */
   handleSubmit = () => {
     const name = this.state.deckName;
     const { deckStore, navigation } = this.props;

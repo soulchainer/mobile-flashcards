@@ -4,6 +4,10 @@ import Navigation from '../Navigation';
 import StatusBar from '../StatusBar';
 import styles, { StatusBarBackgroundColor } from './styles';
 
+/*
+ * Draw main content of the app, with the `StatusBar and the `Navigation`
+ * component, which, basically, holds the rest of the app.
+ */
 class Root extends Component {
   render() {
     return (

@@ -10,10 +10,6 @@ import { setLocalNotification } from './utils/notifications';
 
 class App extends Component {
   componentDidMount() {
-    /**
-     * This would be a great place for recovering persisted state.
-     * And then pass to `Provider` the persisted data of the store.
-     */
     setLocalNotification();
   }
 
