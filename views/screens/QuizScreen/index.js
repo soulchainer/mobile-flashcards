@@ -87,6 +87,13 @@ class QuizScreen extends Component {
   }
 
   /**
+   * Clear any existing listener of `this.animatedValue` on component unmount.
+   */
+  componentWillUnmount() {
+    this.animatedValue.removeAllListeners()
+  }
+
+  /**
    * Trigger the card animation
    */
   animateCard = () => {
