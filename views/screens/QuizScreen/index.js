@@ -82,7 +82,7 @@ class QuizScreen extends Component {
    */
   componentWillUpdate(nextProps, { endOfQuiz }) {
     if (endOfQuiz) {
-      clearLocalNotification().then(setLocalNotification)
+      clearLocalNotification().then(setLocalNotification);
     }
   }
 
@@ -90,7 +90,7 @@ class QuizScreen extends Component {
    * Clear any existing listener of `this.animatedValue` on component unmount.
    */
   componentWillUnmount() {
-    this.animatedValue.removeAllListeners()
+    this.animatedValue.removeAllListeners();
   }
 
   /**
@@ -115,11 +115,7 @@ class QuizScreen extends Component {
   /**
    * Exit the quiz
    */
-  exitQuiz = () => {
-    const { navigate, state } = this.props.navigation;
-
-    navigate('DeckScreen', { deck: state.params.deck });
-  };
+  exitQuiz = () => { this.props.navigation.goBack(); };
 
   /**
    * React when the «Correct» button is pressed
